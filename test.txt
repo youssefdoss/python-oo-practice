@@ -1,0 +1,9 @@
+# Veggies
+
+kale
+parsnips
+
+# Fruits and other stuff
+
+apple
+mango

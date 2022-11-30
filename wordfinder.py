@@ -18,7 +18,7 @@ class WordFinder:
 
         with open(self.file) as file:
             for word in file:
-
+                # strip() will take out new line characters and things of that sort
                 word = word.replace('\n', '')
                 words.append(word)
 
@@ -36,16 +36,16 @@ class WordFinder:
 class RandomWordFinder(WordFinder):
     '''Inherits from WordFinder. Finds random words from given file but excludes comments'''
 
-    def __init__(self, file):
-        '''Create RandomWordFinder given a file'''
-        self.file = file
-        self.words = self.store_words_ignoring_comments()
-        super().print_word_count()
+    # def __init__(self, file):
+    #     '''Create RandomWordFinder given a file'''
+    #     self.file = file
+    #     self.words = self.store_words()
+    #     super().print_word_count()
     
     def __repr__(self):
         return super().__repr__().replace('WordFinder', 'RandomWordFinder')
 
-    def store_words_ignoring_comments(self):
+    def store_words(self):
         '''Stores each word of a given file in words, excluding comments'''
         words = super().store_words()
 

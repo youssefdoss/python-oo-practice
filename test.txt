@@ -3,7 +3,7 @@
 kale
 parsnips
 
-# Fruits and other stuff
+# Fruits
 
 apple
 mango

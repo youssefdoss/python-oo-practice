@@ -7,20 +7,26 @@ class WordFinder:
         '''Creates WordFinder given a file'''
         self.file = file
         self.words = self.store_words()
-
+        self.print_word_count()
+    
+    def __repr__(self):
+        return f'<WordFinder file={self.file} words={self.words}>'
 
     def store_words(self):
         '''Stores each word of given file and creates a list of those words'''
         words = []
 
         with open(self.file) as file:
-            for line in file:
-                for word in line.split():
+            for word in file:
 
-                    words.append(word)
+                word = word.replace('\n', '')
+                words.append(word)
 
-        print(f'{len(words)} words read')
         return words
+
+    def print_word_count(self):
+        '''Prints number of words read in file'''
+        print(f'{len(self.words)} words read')
 
     def random(self):
         '''Selects a random word from the words list and returns it'''
@@ -34,19 +40,14 @@ class RandomWordFinder(WordFinder):
         '''Create RandomWordFinder given a file'''
         self.file = file
         self.words = self.store_words_ignoring_comments()
+        super().print_word_count()
+    
+    def __repr__(self):
+        return super().__repr__().replace('WordFinder', 'RandomWordFinder')
 
     def store_words_ignoring_comments(self):
         '''Stores each word of a given file in words, excluding comments'''
-        words = []
+        words = super().store_words()
 
-        with open(self.file) as file:
-            for line in file:
-                if not line[0] == "#":
-                    for word in line.split():
-
-                        words.append(word)
-
-        print(f'{len(words)} words read')
-        return words
-
+        return [word for word in words if not (word == '' or word.startswith('#'))]
 
